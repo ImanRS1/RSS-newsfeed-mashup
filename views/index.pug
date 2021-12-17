@@ -7,4 +7,5 @@ html(lang='en')
    div.remark
     ul
       each val, index in urlArray
-        li= index + ': ' + val
+        li=index+1 + '. ' 
+          a(href=val)=val
