@@ -1,6 +1,6 @@
-const ExpressenGeneralFeed = require('./Feeds/GeneralExpressen.js');
-const GTGeneralFeed = require('./Feeds/GeneralGT.js');
-const KPGeneralFeed = require('./Feeds/GeneralKP.js');
+const { GeneralExpressenFeed } = require('./Feeds/GeneralExpressen.js');
+const { GeneralGTFeed } = require('./Feeds/GeneralGT.js');
+const { GeneralKPFeed } = require('./Feeds/GeneralKP.js');
 const express = require('express')
 const app = express()
 const path = require('path');
@@ -10,11 +10,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 const retriver = async () => {
-    const feed1 = await ExpressenGeneralFeed.NewsRSS();
-    const feed2 = await GTGeneralFeed.NewsRSS();
-    const feed3 = await KPGeneralFeed.NewsRSS();
+    const feed1 = await GeneralExpressenFeed();
+    const feed2 = await GeneralGTFeed();
+    const feed3 = await GeneralKPFeed();
     rltfeed = feed1.concat(feed2);
-    console.log(rltfeed);
+    //console.log(rltfeed);
     return rltfeed;
 }
 

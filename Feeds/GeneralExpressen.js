@@ -1,18 +1,13 @@
 const Parser = require('rss-parser');
 const parser = new Parser();
-const arraySorter = require('../utils/DateSorter')
+const { DateSorter } = require('../utils/DateSorter');
+const { FilterObjectsList } = require('../utils/FilterObjectsList');
 
 const NewsRSS = async () => {
-  const feed = await parser.parseURL('https://feeds.expressen.se/nyheter/');
-  const dateAndLink = feed.items.map(item => {
-    const filteredObject = {
-      "date": item.pubDate,
-      "link": item.link,
-    }
-    return filteredObject
-  });
+  const feed = await parser.parseURL('http://gt.se/rss/nyheter');
+  const dateAndLink = FilterObjectsList(feed);
 
-  return arraySorter.DateSorter(dateAndLink);;
+  return DateSorter(dateAndLink);
 }
 
-exports.NewsRSS = NewsRSS;
+exports.GeneralExpressenFeed = NewsRSS;
