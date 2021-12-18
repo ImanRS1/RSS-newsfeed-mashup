@@ -1,7 +1,8 @@
+const ExpressenGeneralFeed = require('./Feeds/GeneralExpressen.js');
+const GTGeneralFeed = require('./Feeds/GeneralGT.js');
+const KPGeneralFeed = require('./Feeds/GeneralKP.js');
 const express = require('express')
 const app = express()
-let Parser = require('rss-parser');
-let parser = new Parser();
 const path = require('path');
 const port = 3000;
 
@@ -9,15 +10,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 const retriver = async () => {
-    let feed = await parser.parseURL('https://feeds.expressen.se/nyheter/');
-    const resultArr = feed.items.map(item => item.link);
-    return resultArr;
+    const feed1 = await ExpressenGeneralFeed.NewsRSS();
+    const feed2 = await GTGeneralFeed.NewsRSS();
+    const feed3 = await KPGeneralFeed.NewsRSS();
+    rltfeed = feed1.concat(feed2);
+    console.log(rltfeed);
+    return rltfeed;
 }
 
 app.get('/', async (req, res) => {
   const resultArr = await retriver();
-  //res.send(resultArr)
-  console.log((resultArr));
   res.render('index', {
     urlArray: resultArr,
   });
