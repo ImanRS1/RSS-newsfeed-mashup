@@ -1,6 +1,7 @@
 const { GeneralExpressenFeed } = require('./Feeds/GeneralExpressen.js');
 const { GeneralGTFeed } = require('./Feeds/GeneralGT.js');
 const { GeneralKPFeed } = require('./Feeds/GeneralKP.js');
+const { RSSParser } = require('./utils/RSSParser');
 const express = require('express')
 const app = express()
 const path = require('path');
@@ -13,8 +14,8 @@ const retriver = async () => {
     const feed1 = await GeneralExpressenFeed();
     const feed2 = await GeneralGTFeed();
     const feed3 = await GeneralKPFeed();
-    rltfeed = feed1.concat(feed2);
-    //console.log(rltfeed);
+    rltfeed = feed1.concat(feed2, feed3);
+    console.log(rltfeed);
     return rltfeed;
 }
 
