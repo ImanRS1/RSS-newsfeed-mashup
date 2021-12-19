@@ -4,7 +4,7 @@ html(lang='en')
    title RSS feed mashup
  body
    h1 Expressen RSS news-feed mashup
-   ul
-      each val, index in urlArray
-        li=index+1 + '. ' 
-          a(href=val)=val
+   ol
+      each newsObj in urlArray
+        li
+          a(href=newsObj.link)=newsObj.title

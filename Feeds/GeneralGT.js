@@ -4,8 +4,8 @@ const { RSSParser } = require('../utils/RSSParser');
 
 const NewsRSS = async () => {
   const feed = await RSSParser('http://gt.se/rss/nyheter');
-  const dateAndLink = FilterObjectsList(feed);
-  return DateSorter(dateAndLink);
+  const dateLinkTitle = FilterObjectsList(feed);
+  return DateSorter(dateLinkTitle);
 }
 
 exports.GeneralGTFeed = NewsRSS;
