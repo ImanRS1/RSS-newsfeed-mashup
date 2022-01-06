@@ -24,9 +24,7 @@ const urlArray = [
 ];
 
 const retriver = async () => {
-  const feed = await Promise.all(
-    urlArray.map(async (url) => await FeedHandler(url))
-  );
+  const feed = await Promise.all(urlArray.map((url) => FeedHandler(url)));
   const resultArray = feed.reduce((a, b) => a.concat(b), []);
 
   const uniqueObjects = {};
@@ -45,5 +43,5 @@ app.get("/", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App running at http://localhost:${port}`);
 });

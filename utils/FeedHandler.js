@@ -4,8 +4,8 @@ const { RSSParser } = require('./RSSParser');
 
 const NewsRSS = async (url) => {
   const feed = await RSSParser(url);
-  const dateLinkTitle = FilterObjectsList(feed);
-  return DateSorter(dateLinkTitle);
+  const dateLinkIdTitle = FilterObjectsList(feed);
+  return DateSorter(dateLinkIdTitle);
 }
 
 exports.FeedHandler = NewsRSS;
